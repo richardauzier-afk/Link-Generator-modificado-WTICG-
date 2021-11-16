@@ -18,7 +18,9 @@ interface Link extends PotentialLink {
   // Keys are parameters of the 'from' path and values are parameters of the 'to' path
   parameterMap: Map<OpenAPIV3.ParameterObject, OpenAPIV3.ParameterObject>;
 }
-
+function capitalizeFirstLetter(string: string): string {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
 /**
  * Find path-pairs where a link may potentially be added. We have such a pair if:
  * - Both paths have a get-request defined that has at least one successful response
@@ -27,9 +29,7 @@ interface Link extends PotentialLink {
  * @param openapi The OpenAPI document
  */
 
-function capitalizeFirstLetter(string: string): string {
-  return string.charAt(0).toUpperCase() + string.slice(1);
-}
+
 function findPotentialLinkPairs(openapi: OpenAPIV3.Document): PotentialLink[] {
   const result: PotentialLink[] = [];
 
